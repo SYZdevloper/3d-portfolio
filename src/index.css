@@ -48,7 +48,7 @@ section {
   }
 
   .section-padding {
-    @apply px-5 md:px-10 md:mt-40 mt-20;
+    @apply px-5 md:px-10 md:mt-20 mt-10;
   }
 
   .mt-responsive {
@@ -469,4 +469,30 @@ section {
 
 .card:hover::before {
   opacity: 1;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0e0e10;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #282732;
+  border-radius: 10px;
+  border: 2px solid #0e0e10; /* Adds a bit of padding effect */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #839cb5;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #282732 #0e0e10;
 }
