@@ -1,6 +1,6 @@
-import { Environment, Float, OrbitControls, useGLTF } from "@react-three/drei";
+import { Environment, Float, OrbitControls, useGLTF, Preload } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import * as THREE from "three";
 
 const TechIconCardExperience = ({ model }) => {
@@ -19,7 +19,7 @@ const TechIconCardExperience = ({ model }) => {
   }, [scene]);
 
   return (
-    <Canvas>
+    <Canvas dpr={[1, 2]}>
       <ambientLight intensity={0.3} />
       <directionalLight position={[5, 5, 5]} intensity={1} />
       <spotLight
@@ -47,11 +47,14 @@ const TechIconCardExperience = ({ model }) => {
         THREE.Group object contains all the objects (meshes, lights, etc)
         that make up the 3D model.
       */}
-      <Float speed={5.5} rotationIntensity={0.5} floatIntensity={0.9}>
-        <group scale={model.scale} rotation={model.rotation}>
-          <primitive object={scene.scene} />
-        </group>
-      </Float>
+      <Suspense fallback={null}>
+        <Float speed={5.5} rotationIntensity={0.5} floatIntensity={0.9}>
+          <group scale={model.scale} rotation={model.rotation}>
+            <primitive object={scene.scene} />
+          </group>
+        </Float>
+        <Preload all />
+      </Suspense>
 
       <OrbitControls enableZoom={false} />
     </Canvas>
