@@ -19,7 +19,12 @@ const Particles = ({ count = 200 }) => {
     return temp;
   }, [count]);
 
+  // Only update particle positions every other frame to reduce CPU load
+  const frameSkip = useRef(0);
   useFrame(() => {
+    frameSkip.current += 1;
+    if (frameSkip.current % 2 !== 0) return; // skip every other frame
+
     const positions = mesh.current.geometry.attributes.position.array;
     for (let i = 0; i < count; i++) {
       let y = positions[i * 3 + 1];
@@ -30,12 +35,15 @@ const Particles = ({ count = 200 }) => {
     mesh.current.geometry.attributes.position.needsUpdate = true;
   });
 
-  const positions = new Float32Array(count * 3);
-  particles.forEach((p, i) => {
-    positions[i * 3] = p.position[0];
-    positions[i * 3 + 1] = p.position[1];
-    positions[i * 3 + 2] = p.position[2];
-  });
+  const positions = useMemo(() => {
+    const pos = new Float32Array(count * 3);
+    particles.forEach((p, i) => {
+      pos[i * 3] = p.position[0];
+      pos[i * 3 + 1] = p.position[1];
+      pos[i * 3 + 2] = p.position[2];
+    });
+    return pos;
+  }, [particles, count]);
 
   return (
     <points ref={mesh}>

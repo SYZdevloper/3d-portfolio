@@ -193,20 +193,14 @@ const expLogos = [
 
 const socialImgs = [
   {
-    name: "insta",
-    imgPath: "/images/insta.png",
-  },
-  {
-    name: "fb",
-    imgPath: "/images/fb.png",
-  },
-  {
-    name: "x",
-    imgPath: "/images/x.png",
-  },
-  {
     name: "linkedin",
     imgPath: "/images/linkedin.png",
+    link: "https://www.linkedin.com/in/yash-kondane-4aa386315",
+  },
+  {
+    name: "mail",
+    imgPath: "/images/mail.svg",
+    link: "mailto:kondaneyash@gmail.com",
   },
 ];
 

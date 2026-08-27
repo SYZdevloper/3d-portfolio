@@ -6,7 +6,17 @@ import Computer from "./Computer";
 
 const ContactExperience = () => {
   return (
-    <Canvas shadows camera={{ position: [0, 3, 7], fov: 45 }} dpr={[1, 2]}>
+    <Canvas
+      shadows
+      camera={{ position: [0, 3, 7], fov: 45 }}
+      dpr={[1, 1.5]}
+      gl={{
+        antialias: false,
+        powerPreference: "high-performance",
+        stencil: false,
+        depth: true,
+      }}
+    >
       <ambientLight intensity={0.5} color="#fff4e6" />
 
       <directionalLight position={[5, 5, 3]} intensity={2.5} color="#ffd9b3" />
@@ -16,6 +26,8 @@ const ContactExperience = () => {
         castShadow
         intensity={2.5}
         color="#ffd9b3"
+        shadow-mapSize-width={512}
+        shadow-mapSize-height={512}
       />
 
       <OrbitControls
