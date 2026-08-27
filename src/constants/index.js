@@ -198,6 +198,11 @@ const socialImgs = [
     link: "https://www.linkedin.com/in/yash-kondane-4aa386315",
   },
   {
+    name: "github",
+    imgPath: "/images/github.svg",
+    link: "https://github.com/SYZdevloper",
+  },
+  {
     name: "mail",
     imgPath: "/images/mail.svg",
     link: "mailto:kondaneyash@gmail.com",
