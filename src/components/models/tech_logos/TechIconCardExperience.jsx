@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { useEffect, Suspense, useMemo } from "react";
 import * as THREE from "three";
 
-const TechIconCardExperience = ({ model }) => {
+const TechModel = ({ model }) => {
   const scene = useGLTF(model.modelPath);
 
   useEffect(() => {
@@ -16,8 +16,16 @@ const TechIconCardExperience = ({ model }) => {
         }
       });
     }
-  }, [scene]);
+  }, [scene, model.name]);
 
+  return (
+    <group scale={model.scale} rotation={model.rotation}>
+      <primitive object={scene.scene} />
+    </group>
+  );
+};
+
+const TechIconCardExperience = ({ model }) => {
   return (
     <Canvas
       dpr={[1, 1.5]}
@@ -34,9 +42,7 @@ const TechIconCardExperience = ({ model }) => {
 
       <Suspense fallback={null}>
         <Float speed={5.5} rotationIntensity={0.5} floatIntensity={0.9}>
-          <group scale={model.scale} rotation={model.rotation}>
-            <primitive object={scene.scene} />
-          </group>
+          <TechModel model={model} />
         </Float>
         <Preload all />
       </Suspense>
